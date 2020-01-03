@@ -1,10 +1,21 @@
-const dotenv = require('dotenv');
 const fs = require('fs');
 const os = require('os');
 
-dotenv.config({path: fs.realpathSync(__dirname + '/../.env')});
+const edgeModules = ['electron-edge-js', 'edge-js', 'electron-edge', 'edge'];
+let edgeModule;
+for (const moduleName of edgeModules) {
+    try {
+        require.resolve(`${moduleName}`);
+        edgeModule = moduleName;
+        break;
+    } catch (e) {
+    }
+}
+if (!edgeModule) {
+    throw new Error('No compatible edge module was found!');
+}
 
-const edge = require(`../../${process.env.NNP_PACKAGE}`);
+const edge = require(`${edgeModule}`);
 const dllPath = fs.realpathSync(__dirname + '/../lib/windows/windows_printer.dll').replace('.asar', '.asar.unpacked');
 
 module.exports = class WinPrinter {
