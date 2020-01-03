@@ -68,6 +68,16 @@ namespace windows_printer
 
             return jobs.ToArray();
         }
+
+        public static string GetQueueStatus(string printerName)
+        {
+            PrinterSettings printerSettings = new PrinterSettings { PrinterName = printerName };
+
+            if (!printerSettings.IsValid)
+                printerName = (new PrinterSettings()).PrinterName; //fallback to default printer
+
+            return Methods.GetPrintQueue(printerName).QueueStatus.ToString();
+        }
         public static PrinterOptions GetOptions(string printerName)
         {
             PrinterSettings ps = new PrinterSettings() { PrinterName = printerName };

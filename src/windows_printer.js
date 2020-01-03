@@ -94,6 +94,29 @@ module.exports = class WinPrinter {
     }
 
     /**
+     * Returns a queue status
+     * @see https://docs.microsoft.com/en-us/dotnet/api/system.printing.printqueuestatus
+     * @param printer
+     * @returns {Promise<string>}
+     */
+    queueStatus(printer = '') {
+        var status = edge.func({
+            assemblyFile: dllPath,
+            typeName: 'windows_printer.API',
+            methodName: 'QueueStatus'
+        });
+
+        return new Promise((resolve, reject) => {
+            status(printer || this.printer, function (error, response) {
+                if (error)
+                    reject(error);
+                else
+                    resolve(response);
+            });
+        });
+    }
+
+    /**
      * Get options of supplied printer of, if not supplied, of printer set with `setPrinter()`.
      * If no printer is set or supplied, it will be take the default printer.
      * @param {string?} printer

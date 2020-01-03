@@ -17,6 +17,10 @@ namespace windows_printer
         {
             return Methods.PrinterInfo((string)(printerName));
         }
+        public async Task<object> QueueStatus(object printerName)
+        {
+            return Methods.GetQueueStatus((string)(printerName));
+        }
         public async Task<object> GetOptions(object printerName)
         {
             return Methods.GetOptions((string)(printerName));
