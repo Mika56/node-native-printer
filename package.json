@@ -22,7 +22,7 @@
   ],
   "author": "MatteoMeil",
   "license": "MIT",
-  "gypfile": true,
+  "types": "./typings.d.ts",
   "bugs": {
     "url": "https://github.com/Mika56/node-native-print/issues"
   },
