@@ -196,7 +196,7 @@ module.exports = class WinPrinter {
 
         let options = {};
         Object.keys(defaultOptions).forEach(value => {
-            if (userOptions[value] !== null || userOptions[value] !== undefined)
+            if (userOptions.hasOwnProperty(value))
                 options[value] = userOptions[value];
             else
                 options[value] = defaultOptions[value];
