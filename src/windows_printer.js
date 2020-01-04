@@ -108,7 +108,7 @@ module.exports = class WinPrinter {
      * Returns a queue status
      * @see https://docs.microsoft.com/en-us/dotnet/api/system.printing.printqueuestatus
      * @param printer
-     * @returns {Promise<string>}
+     * @returns {Promise<string[]>}
      */
     queueStatus(printer = '') {
         var status = edge.func({
@@ -122,7 +122,7 @@ module.exports = class WinPrinter {
                 if (error)
                     reject(error);
                 else
-                    resolve(response);
+                    resolve(response.split(', '));
             });
         });
     }

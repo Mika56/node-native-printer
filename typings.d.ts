@@ -8,7 +8,7 @@ export function getCurrentPrinter(): string;
 
 export function printerInfo(printer?: string): Promise<any>;
 
-export function queueStatus(printer?: string): Promise<string>;
+export function queueStatus(printer?: string): Promise<string[]>;
 
 export function printerOptions(printer?: string): Promise<PrinterOptions>;
 
