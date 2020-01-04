@@ -5,8 +5,8 @@ const edgeModules = ['electron-edge-js', 'edge-js', 'electron-edge', 'edge'];
 let edgeModule;
 for (const moduleName of edgeModules) {
     try {
-        require.resolve(`${moduleName}`);
-        edgeModule = moduleName;
+        require.resolve(`../../${moduleName}`);
+        edgeModule = `../../${moduleName}`;
         break;
     } catch (e) {
     }
